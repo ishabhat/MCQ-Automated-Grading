@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Grader</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+    <h1>Multiple Choice Test Grader</h1>
+    <br></br>
+    
+   <!-- <button type="download" class="download-btn" onclick="downloadOMRSheet()">Download OMR Sheet</button> -->
+
+    <p style="text-align:center;">Upload an image of the filled-out test:</p>
+
+    <!-- Form for uploading an image -->
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".png, .jpg, .jpeg">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Add a button to download the OMR sheet -->
+<!--    <button type="download" class="download-btn" onclick="downloadOMRSheet()">Download OMR Sheet</button>-->
+
+
+
+<!--<script>-->
+<!--function downloadOMRSheet() {-->
+<!--    // Replace 'path/to/your/omr-sheet.pdf' with the actual path to your OMR sheet-->
+<!--    const omrSheetUrl = 'images/example_test.png';-->
+
+<!--    // Create an anchor element to trigger the download-->
+<!--    const link = document.createElement('a');-->
+<!--    link.href = omrSheetUrl;-->
+<!--    link.download = 'omr-sheet.pdf';-->
+
+<!--    // Simulate a click event to trigger the download-->
+<!--    link.click();-->
+<!--}-->
+<!--</script>-->
+
+    <!-- Display the score if available -->
+    <div>
+    {% if score is defined %}
+    <h2>Score: {{ score }}%</h2>
+    {% endif %}
+
+    <!-- Display error messages if any -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+<div style="text-align: center;">
+    <a href="{{url_for('logout')}}">Logout</a>
+</div>
+
+</body>
+</html>
